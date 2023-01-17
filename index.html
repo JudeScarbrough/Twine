@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twine</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="form.js"></script>
+</head>
+<body>
+  <div id="header">
+    <h1>Twine</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+  <div id="content">
+    <h2>Sign Up</h2>
+    <forma>
+      <label for="fullname">Full Name:</label>
+      <label id="error" class="invalname" for="fullname">You must enter a valid first and last name</label>
+      <label id="error" class="namebanchar" for="fullname">Your name cannot contain any of the following characters: ( ) ' [ ] { } " ~ `</label>
+
+      <input type="text" id="fullname" name="fullname">
+
+      
+      <label for="phonenumber">Phone Number:</label>
+      <label id="error" class="badphone" for="phonenumber">Phone number must only consist of 10 numbers</label>
+
+      <input type="text" id="phonenumber" name="phonenumber">
+      
+      <label for="password">Password:</label>
+
+      <label id="error" class="pwdnomatch" for="password">Passwords do not match</label>
+      <label id="error" for="password">Password cannot contain any of the following characters: ( ) ' [ ] { } " ~ `</label>
+      <label id="error" class="nopwd" for="password">You must provide a password</label>
+
+      <input type="password" id="password" name="password">
+
+
+      <label for="password2">Confirm Password:</label>
+      <input type="password" id="password2" name="password2">
+      <input type="submit" onclick="Submitted()" value="Sign Up">
+    </forma>
+  </div>
+</body>
+</html>
