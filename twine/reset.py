@@ -28,7 +28,7 @@ def main(data):
     cursor.close()
     cnx.close()
 
-    if len(results) > 0:
+    if len(results) < 0:
         return {"verdict": "nophone"}
     else:
         return continued(data)
