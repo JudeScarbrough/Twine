@@ -182,6 +182,10 @@ button:focus {
     background: #fff;
 }
 
+.predel {
+    display: none;
+}
+
 .overlay {
     background: #007cc9;
     /*background: -webkit-linear-gradient(#8CA6DB, #B993D6);

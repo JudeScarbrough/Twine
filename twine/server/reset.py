@@ -2,6 +2,7 @@ import sqlExecute
 import mysql.connector
 import json
 import random
+import twiliosend
 
 def main(data):
     phoneNum = data["phoneNumber"]
@@ -42,10 +43,11 @@ def continued(data):
     # Create a cursor object
     cursor = cnx.cursor()
 
-    dataSql = json.dumps({"phoneVerified": "no"})
+
+    theCode = random.randint(100000, 999999)
 
     # Insert data into the users table
-    query = f"INSERT INTO `reset` (`phoneNumber`, `code`) VALUES ('{ data['phoneNumber'] }','{ random.randint(100000, 999999) }')"
+    query = f"INSERT INTO `reset` (`phoneNumber`, `code`) VALUES ('{ data['phoneNumber'] }','{ theCode }')"
     cursor.execute(query)
 
     # Commit the changes to the database
@@ -54,6 +56,8 @@ def continued(data):
     # Close the cursor and connection
     cursor.close()
     cnx.close()
+
+    twiliosend.sendText(data['phoneNumber'], theCode)
 
     return {"verdict": "success"}
     

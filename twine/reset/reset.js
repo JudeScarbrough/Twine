@@ -1,4 +1,8 @@
+secondGo = false
+
 function Submitted(){
+
+
     phoneNum = document.getElementById("phonenumber").value
 
 
@@ -19,7 +23,7 @@ function Submitted(){
     }
 
 
-    if (isAPhoneNum) {
+    if (isAPhoneNum && !secondGo) {
         fetch('http://34.220.148.83:8000/', {
             method: 'POST',
             headers: {
@@ -32,17 +36,30 @@ function Submitted(){
 
                 dataObj = JSON.parse(data)
                 
+                if (dataObj["verdict"] == "nophone"){
+                    // phone is not linked to an account
+                    document.getElementsByClassName("nophone")[0].style.display = "block"
+                } else {
+                    document.getElementsByClassName("nophone")[0].style.display = "none"
+                }
 
-
-
-
-
-
-
-                
-
+                if (dataObj["verdict"] == "success"){
+                    secondGo = true
+                    second(phoneNum)
+                }
 
             });
 
+    }
+}
+
+
+
+function second(phoneNum){
+    document.getElementById("phonenumber").style.display = "none"
+    listy = document.getElementsByClassName("needed")
+
+    for (const item of listy) {
+        item.style.display = "block"
     }
 }

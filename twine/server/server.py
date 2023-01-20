@@ -14,6 +14,8 @@ def determine(data):
         return login(data)
     if (data["intention"] == "reset"):
         return reset.main(data)
+    if (data["intention"] == "reset2"):
+        return reset.main(data)
 
     
 def login(data):
