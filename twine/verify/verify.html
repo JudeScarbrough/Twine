@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Twine</title>
+    <link rel="stylesheet" type="text/css" href="verify.css">
+    <script src="verify.js"></script>
+    
+</head>
+
+
+<div class='bold-line'></div>
+<div class='container'>
+    <div class='window'>
+        <div class='overlay'></div>
+        <div class='content'>
+            <div class='welcome'>Reset Password</div>
+            <div class='subtitle'>Remember your password? <a style="color: white; font-weight: 900;"
+                    href="../login/loginui.html">Log In</a></div>
+            <div class='input-fields'>
+                
+                <label id="error" class="badphone" for="phonenumber">Phone number must only consist of 10 numbers</label>
+                <label id="error" class="nophone" for="phonenumber">This phone number doesn't have an account linked to it. <a href="../signup/signupui.html">Sign Up</a></label>
+                <input id="phonenumber" type='email' placeholder='Phone Number' class='input-line full-width'></input>
+
+                
+
+            </div>
+
+            <div><button onclick="Submitted()" class='ghost-round full-width createAcct'>Reset</button></div>
+            <div><a href="../login/loginui.html" style="text-decoration: none;"><button style="display: none;" class='ghost-round full-width logbutt'>Log In</button></a></div>
+        </div>
+    </div>
+</div>
+
+</html>

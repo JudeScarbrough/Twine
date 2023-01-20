@@ -1,9 +1,14 @@
-// Create a new element
+userData = JSON.parse(localStorage.getItem("userData"))
 
-alert(localStorage.getItem("name"))
+if(userData["phoneVerified"] == "no"){
+    window.location.href = "../verify/verify.html"
+}
 
 
 
-namey = localStorage.getItem("name");
-// Add content to the new element
-document.getElementById("pp").innerHTML = JSON.stringify(namey)
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("pp").innerHTML = localStorage.getItem("name")
+});
+

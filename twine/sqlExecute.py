@@ -51,7 +51,7 @@ def checkNum(phoneNum):
 
     
 def submitUser(data):
-    import mysql.connector
+
 
 
     # Connect to the database

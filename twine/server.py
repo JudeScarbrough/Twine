@@ -1,6 +1,7 @@
 import sqlExecute
 from flask_cors import CORS
 from flask import Flask, request
+import reset
 
 app = Flask(__name__)
 CORS(app)
@@ -11,6 +12,8 @@ def determine(data):
         return signup(data)
     if (data["intention"] == "login"):
         return login(data)
+    if (data["intention"] == "reset"):
+        return reset.main(data)
 
     
 def login(data):

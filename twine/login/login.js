@@ -24,11 +24,11 @@ function Submitted(){
     let match = phoneNum.match(/^\d{10}$/);
     if (match) {
         isAPhoneNum = true
-        // no input to user
+        document.getElementsByClassName("badphone")[0].style.display = "none"
         console.log("valid phone")
     } else {
         isAPhoneNum = false
-        // display to users invalid phone input
+        document.getElementsByClassName("badphone")[0].style.display = "block"
         console.log("invalid phone input")
     }
 
@@ -100,6 +100,8 @@ function Submitted(){
                     localStorage.setItem("phoneNumber", dataObj["main"][2])
                     localStorage.setItem("groupIds", dataObj["main"][4])
                     localStorage.setItem("userData", dataObj["main"][5])
+
+                    window.location.href = "../userdashboard/userdashboard.html"
 
                 }
 

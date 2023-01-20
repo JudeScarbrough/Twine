@@ -122,7 +122,7 @@ function Submitted(){
         "password": password1
     }
 
-    if (pwdHas && pwdMatch && isAName && isAPhoneNum && pwBanned && !hasSubmitted){
+    if (pwdHas && pwdMatch && isAName && isAPhoneNum && pwBanned){
         fetch('http://34.220.148.83:8000/', {
             method: 'POST',
             headers: {
@@ -131,7 +131,7 @@ function Submitted(){
             body: JSON.stringify(data)
         }).then(response => response.text())
             .then(data => {
-                hasSubmitted = true
+                
 
 
                 dataObj = JSON.parse(data)
@@ -146,6 +146,9 @@ function Submitted(){
                     document.getElementsByClassName("welcome")[0].innerHTML = "Sign Up Successful!"
                     document.getElementsByClassName("createAcct")[0].style.display = "none"
                     document.getElementsByClassName("logbutt")[0].style.display = "block"
+
+
+                    
                     
                 }
 
