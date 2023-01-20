@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Twine</title>
+    <link rel="stylesheet" type="text/css" href="signupui.css">
+    <script src="form.js"></script>
+    
+</head>
+
+
+<div class='bold-line'></div>
+<div class='container'>
+    <div class='window'>
+        <div class='overlay'></div>
+        <div class='content'>
+            <div class='welcome'>Sign Up</div>
+            <div class='subtitle'>Already have an account? <a style="color: white; font-weight: 900;"
+                    href="../login/loginui.html">Log In</a></div>
+            <div class='input-fields'>
+                <label id="error" class="invalname" for="fullname">You must enter a valid first and last name</label>
+                <label id="error" class="namebanchar" for="fullname">Your name cannot contain any of the following characters: ( ) ' [ ] { } " ~ `</label>
+                <input id="fullname" type='text' placeholder='Full Name' class='input-line full-width'></input>
+
+                <label id="error" class="badphone" for="phonenumber">Phone number must only consist of 10 numbers</label>
+                <label id="error" class="phonetaken" for="phonenumber">This phone number is already in use. <a href="reset.html">Reset Password Here</a></label>
+                <input id="phonenumber" type='email' placeholder='Phone Number' class='input-line full-width'></input>
+
+                <label id="error" class="pwdnomatch" for="password">Passwords do not match</label>
+                <label id="error" class="pwban" for="password">Password cannot contain any of the following characters: ( ) ' [ ] { } " ~ `</label>
+                <label id="error" class="nopwd" for="password">You must provide a password</label>
+                <input id="password" type='password' placeholder='Password' class='input-line full-width'></input>
+                <input id="password2" type='password' placeholder='Repeat Password' class='input-line full-width'></input>
+
+            </div>
+
+            <div><button onclick="Submitted()" class='ghost-round full-width createAcct'>Create Account</button></div>
+            <div><a href="../login/loginui.html" style="text-decoration: none;"><button style="display: none;" class='ghost-round full-width logbutt'>Log In</button></a></div>
+        </div>
+    </div>
+</div>
+
+</html>
