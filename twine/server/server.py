@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask import Flask, request
 import reset
 import reset2
+import verify
 
 app = Flask(__name__)
 CORS(app)
@@ -17,6 +18,10 @@ def determine(data):
         return reset.main(data)
     if (data["intention"] == "reset2"):
         return reset2.main(data)
+    if (data["intention"] == "verify"):
+        return verify.verify(data)
+    if (data["intention"] == "markVerified"):
+        return verify.markVerified(data)
 
     
 def login(data):

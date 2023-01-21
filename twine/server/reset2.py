@@ -5,7 +5,7 @@ import sqlExecute
 
 def main(data):
     theCode = data["theCode"]
-    phoneNum = data["phoneNum"]
+    phoneNum = data["phoneNumber"]
     password = data["password"]
 
     if checkNumForCode(phoneNum, theCode):
@@ -17,7 +17,7 @@ def main(data):
         # Create a cursor object
         cursor = cnx.cursor()
 
-        dataSql = json.dumps({"phoneVerified": "no"})
+        
 
         # Insert data into the users table
         query = f"UPDATE users SET hashedPW = '{sqlExecute.hash(password)}' WHERE phoneNumber = {phoneNum};"

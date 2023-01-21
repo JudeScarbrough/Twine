@@ -80,6 +80,12 @@ function Submitted(){
                         for (const item of listy1) {
                             item.style.display = "none"
                         }
+
+                        document.getElementById("welcome").innerHTML = "Reset Password Successful"
+
+                        document.getElementsByClassName("createAcct")[0].style.display = "none"
+                        document.getElementsByClassName("logbutt")[0].style.display = "block"
+                        document.getElementsByClassName("subtitle")[0].style.display = "none"
                     }
     
                 });
