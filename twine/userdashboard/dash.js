@@ -9,6 +9,6 @@ if(userData["phoneVerified"] == "no"){
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById("pp").innerHTML = localStorage.getItem("name")
+    document.getElementById("pp").innerHTML = localStorage.getItem("name") + " " + localStorage.getItem("phoneNumber") + " " + localStorage.getItem("userData")
 });
 

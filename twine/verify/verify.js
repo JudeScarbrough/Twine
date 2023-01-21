@@ -21,7 +21,7 @@ function Submitted(){
                 body: JSON.stringify(data)
             }).then(response => response.text())
                 .then(data => {
-                    console.log(data)
+                    
     
                     dataObj = JSON.parse(data)
                     
@@ -64,18 +64,23 @@ function Verify(){
                 body: JSON.stringify(data)
             }).then(response => response.text())
                 .then(data => {
-                    console.log(data)
+                    
     
                     dataObj = JSON.parse(data)
                     
-                    alert(dataObj["verdict"])
                     
 
+                    localStorage.setItem("userData", dataObj["userData"])
+                    document.getElementsByClassName("verify")[0].style.display = "none"
+                    document.getElementsByClassName("mainin")[0].style.display = "none"
+                    document.getElementsByClassName("welcome")[0].innerHTML = "Verification Successful"
+
+                    document.getElementsByClassName("dashy")[0].style.display = "block"
     
 
                 });
     }
-    }
+    
 
 
 }

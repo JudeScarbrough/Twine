@@ -81,8 +81,8 @@ function Submitted(){
                             item.style.display = "none"
                         }
 
-                        document.getElementById("welcome").innerHTML = "Reset Password Successful"
-
+                        document.getElementsByClassName("welcome")[0].style.display = "none"
+                        document.getElementsByClassName("retitle")[0].style.display = "block"
                         document.getElementsByClassName("createAcct")[0].style.display = "none"
                         document.getElementsByClassName("logbutt")[0].style.display = "block"
                         document.getElementsByClassName("subtitle")[0].style.display = "none"
