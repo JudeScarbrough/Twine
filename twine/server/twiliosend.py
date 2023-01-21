@@ -14,4 +14,3 @@ def sendText(phoneNum, code):
     message = client.messages.create(from_='+17208159342', body=message, to=editedNum) 
 
 
-sendText("5126623667", "696969")
