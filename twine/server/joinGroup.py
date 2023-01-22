@@ -36,6 +36,7 @@ def main(data):
 
 
 def addList1(data, groupid):
+    print(groupid)
     # Connect to the database
     cnx = mysql.connector.connect(user='admin',
                               password='Password',
@@ -55,23 +56,33 @@ def addList1(data, groupid):
 
     # Fetch the results
     results = cursor.fetchall()
-
+    
     # Close the cursor and connection
     cursor.close()
     cnx.close()
 
-    list = json.loads(results[0][0])
-
-    for i in list:
-        if i == groupid:
-            return {"verdict": "Already Joined"}
     
-    list.append(groupid)
+
+    if len(str(results)) > 7:
+        
+        list = json.loads(results[0][0])
+        for i in list:
+            if i == groupid:
+                return {"verdict": "Already Joined"}
+        list.append(groupid)
+    else:
+        list = []
+        list.append(groupid)
+
+    
+
+    
 
     return addList(data, list)
 
 
 def addList(data, list):
+    print(list)
     # Connect to the database
     cnx = mysql.connector.connect(user='admin',
                                   password='Password',
