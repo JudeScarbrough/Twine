@@ -75,4 +75,3 @@ def getGroupData(id):
 
 
 
-print(main({"phoneNumber": "5126623667"}))
