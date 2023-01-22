@@ -97,8 +97,3 @@ def addList(data, list):
 
 
 
-print(addList1({
-    "orgName": "Jude",
-    "groupName": "When Jude Poops",
-    "phoneNumber": "5126623667"
-}, 6))
