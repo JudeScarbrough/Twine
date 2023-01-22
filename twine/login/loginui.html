@@ -8,7 +8,10 @@
 
 </head>
 
+    
 
+    
+    
 <div class='bold-line'></div>
 <div class='container'>
     <div class='window'>
@@ -16,23 +19,25 @@
         <div class='content'>
             <div class='welcome'>Log In</div>
             <div class='subtitle'>If you don't yet have an account, <a style="color: white; font-weight: 900;" href="../signup/signupui.html">Sign up</a></div>
+            
             <div class='input-fields'>
                 
                 <label id="error" class="nophone" for="phonenumber">You must provide a phone number</label>
                 <label id="error" class="badphone" for="phonenumber">Phone number must only consist of 10 numbers</label>
                 <label id="error" class="nouser" for="phonenumber">This phone number is not yet associated with an account <br> <a href="../signup/signupui.html">Sign Up Here</a></label>
-                <input id="phonenumber" type='email' placeholder='Phone Number' class='input-line full-width'></input>
+                <input id="phonenumber" type='email' placeholder='Phone Number' class='input-line full-width'>
 
-                <label id="error" class="pwban" for="password">Password cannot contain any of the following characters:
-                    ( ) ' [ ] { } " ~ `</label>
+                <label id="error" class="pwban" for="password">Password cannot contain any of the following characters: ( ) ' [ ] { } " ~ `</label>
                 <label id="error" class="nopwd" for="password">You must provide a password</label>
                 <label id="error" class="wrongPW" for="password">Incorrect Password. <a href="../reset/reset.html">Reset Password Here</a></label>
-                <input id="password" type='password' placeholder='Password' class='input-line full-width'></input>
+                <input id="password" type='password' placeholder='Password' class='input-line full-width'>
 
             </div>
 
             <div><button onclick="Submitted()" class='ghost-round full-width createAcct'>Log In</button></div>
         </div>
+    
+    
     </div>
 </div>
 
