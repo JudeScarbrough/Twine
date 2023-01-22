@@ -4,6 +4,7 @@ from flask import Flask, request
 import reset
 import reset2
 import verify
+import loadDashboard
 
 app = Flask(__name__)
 CORS(app)
@@ -22,6 +23,8 @@ def determine(data):
         return verify.verify(data)
     if (data["intention"] == "markVerified"):
         return verify.markVerified(data)
+    if (data["intention"] == "loadDashboard"):
+        return loadDashboard.main(data)
 
     
 def login(data):
