@@ -45,6 +45,11 @@ body {
     font-family: 'Heebo', sans-serif;
     text-decoration: none;
     color: black;
+    display: block;
+}
+
+#navbar ul li a {
+    z-index: 5;
 }
 #navbar ul li a {
     text-decoration: none;

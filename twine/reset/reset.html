@@ -5,10 +5,45 @@
     <title>Twine</title>
     <link rel="stylesheet" type="text/css" href="reset.css">
     <script src="reset.js"></script>
-    
+    <link rel="icon" type="image/png" href="../images/logo64.png">
 </head>
 
+<header>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            if(localStorage.getItem("name") !== "null"){
+                document.getElementById("loginbutt").style.display = "none";
+                document.getElementById("signupbutt").style.display = "none";
+            } 
+            if (localStorage.getItem("name") == "null") {
+                document.getElementById("loginbutt").style.display = "block";
+                document.getElementById("signupbutt").style.display = "block";
+            }
+        })
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="../home/style.css">
+    <navbar id="navbar">
+
+        <a href="../index.html"><img src="../images/logofull.png" id="logoimg"></a>
+        
+        <ul>
+            <li><a href="../userdashboard/userdashboard.html">Dashboard</a></li>
+            <li><a>Home</a></li>
+            <li><a>Product</a></li>
+            <li><a>Use Cases</a></li>
+            <li><a>Pricing</a></li>  
+        </ul>
+
+        
+        
+        <a href="../login/loginui.html" id="loginbutt" style="text-decoration: none;">Log In</a>
+        <a href="../signup/signupui.html"><button id="signupbutt">Sign Up</button></a>
+
+    </navbar>
+    <hr id="navhr">
+</header>
 <div class='bold-line'></div>
 <div class='container'>
     <div class='window'>

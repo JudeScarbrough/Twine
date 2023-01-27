@@ -51,6 +51,7 @@ html body{
     display: block;
     margin: auto;
     transition-duration: .4s;
+    text-decoration: none;
 }
 .dashbutton{
     width: 100%;

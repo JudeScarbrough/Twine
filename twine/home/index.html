@@ -6,13 +6,27 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 
 
-
 </head>
     
 <header>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            if(localStorage.getItem("name") !== "null"){
+                document.getElementById("loginbutt").style.display = "none";
+                document.getElementById("signupbutt").style.display = "none";
+            } 
+            if (localStorage.getItem("name") == "null" || localStorage.getItem("name") == null) {
+                document.getElementById("loginbutt").style.display = "block";
+                document.getElementById("signupbutt").style.display = "block";
+            }
+        })
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="../home/style.css">
     <navbar id="navbar">
 
-        <img src="../images/logofull.png" id="logoimg">
+        <a href="../index.html"><img src="../images/logofull.png" id="logoimg"></a>
         
         <ul>
             <li><a href="../userdashboard/userdashboard.html">Dashboard</a></li>
@@ -30,6 +44,12 @@
     </navbar>
     <hr id="navhr">
 </header>
+
+
+
+
+
+
 <body>
     <img src="../images/bg.jpg" id="bgimage">
     <div id="homediv">
