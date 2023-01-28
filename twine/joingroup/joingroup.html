@@ -3,20 +3,70 @@
     <head>
         <link rel="stylesheet" type="text/css" href="joingroup.css">
         <script src="joingroup.js"></script>
+        <link rel="icon" type="image/png" href="../images/logo64.png">
     </head>
 <body>
 
-<label for="orgName">Organization Name</label>
-<input type="text" id="orgName">
-<label for="groupName">Group Name</label>
-<input type="text" id="groupName">
-<input onclick="Submitted()" type="submit">
+    <header>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+                if(localStorage.getItem("name") !== "null"){
+                    document.getElementById("loginbutt").style.display = "none";
+                    document.getElementById("signupbutt").style.display = "none";
+                } 
+                if (localStorage.getItem("name") == "null" || localStorage.getItem("name") == null) {
+                    document.getElementById("loginbutt").style.display = "block";
+                    document.getElementById("signupbutt").style.display = "block";
+                }
+            })
+        </script>
+    
+        <link rel="stylesheet" type="text/css" href="../home/style.css">
+        <navbar id="navbar">
+    
+            <a href="../index.html"><img src="../images/logofull.png" id="logoimg"></a>
+            
+            <ul>
+                <li><a href="../userdashboard/userdashboard.html">Dashboard</a></li>
+                <li><a>Home</a></li>
+                <li><a>Product</a></li>
+                <li><a>Use Cases</a></li>
+                <li><a>Pricing</a></li>  
+            </ul>
+    
+            
+            
+            <a href="../login/loginui.html" id="loginbutt" style="text-decoration: none;">Log In</a>
+            <a href="../signup/signupui.html"><button id="signupbutt">Sign Up</button></a>
+    
+        </navbar>
+        <hr id="navhr">
+    </header>
+    
+    
 
-
-
-
-
+    <div class='bold-line'></div>
+    <div class='container'>
+        <div class='window'>
+            <div class='overlay'></div>
+            <div class='content'>
+                <div class='welcome'>Join a Group!</div>
+                
+                <div class='input-fields'>
+                    
+                    <label id="error" class="nophone" for="groupnum alrjoin">You are already in this group.</label>
+                    <label id="error" class="nophone" for="groupnum nomatch">No group matches this ID.</label>
+                    <input id="groupnum" type='email' placeholder='Group ID Number' class='input-line full-width'>
+    
+                </div>
+    
+                <div><button onclick="Submitted()" class='ghost-round full-width createAcct'>Join</button></div>
+            </div>
+        
+        
+        </div>
+    </div>
 
 
 

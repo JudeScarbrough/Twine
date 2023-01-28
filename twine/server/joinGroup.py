@@ -11,11 +11,11 @@ def main(data):
     # Create a cursor object
     cursor = cnx.cursor()
 
-    gn = data["groupName"]
-    on = data["orgName"]
+    gn = data["groupID"]
+
 
     # Define the query
-    query = f"SELECT groupID FROM `groups` WHERE groupName = '{ gn }' AND organizationName = '{ on }';"
+    query = f"SELECT * FROM `groups` WHERE groupID = '{ gn }';"
 
     # Execute the query
     cursor.execute(query)
@@ -27,9 +27,12 @@ def main(data):
     cursor.close()
     cnx.close()
 
-    groupid = results[0][0]
-
-    return addList1(data, groupid)
+    if len(results) > 0:
+        return addList1(data, gn)
+    else:
+        return {
+            "verdict": "groupdoesnotexist"
+        }
 
 
 
@@ -94,7 +97,7 @@ def addList(data, list):
     phoneNum = data["phoneNumber"]
 
     # Insert data into the users table
-    query = f"UPDATE users SET groupIds = '{ list }' WHERE phoneNumber = '{ phoneNum }';"
+    query = f"UPDATE users SET groupIds = '{ json.dumps(list) }' WHERE phoneNumber = '{ phoneNum }';"
     cursor.execute(query)
 
     # Commit the changes to the database
@@ -106,5 +109,10 @@ def addList(data, list):
 
     return {"verdict": "success"}
 
-
+print(main(
+    {
+        "phoneNumber": "5126623667",
+        "groupID": "2"
+    }
+))
 
