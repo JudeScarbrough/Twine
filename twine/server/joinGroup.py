@@ -109,10 +109,4 @@ def addList(data, list):
 
     return {"verdict": "success"}
 
-print(main(
-    {
-        "phoneNumber": "5126623667",
-        "groupID": "2"
-    }
-))
 
