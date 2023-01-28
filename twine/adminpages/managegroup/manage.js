@@ -11,7 +11,7 @@ function signOutFunc(){
     localStorage.setItem("phoneNumber", null)
     localStorage.setItem("groupIds", null)
 
-    window.location.href = "../index.html"
+    window.location.href = "../../index.html"
 }
 
 data = {
@@ -30,27 +30,6 @@ fetch('http://34.220.148.83:8000/', {
                     
     
                     dataObj = JSON.parse(data)
-
-                    userData = JSON.parse(dataObj["userData"][0])
-
-                    localStorage.setItem("userData", JSON.stringify(userData))
-
-                    if (userData["adminAccount"] == "yes"){
-                        window.location.href = "../admindashboard/admindashboard.html"
-                    }
-                    
-
-
-                    listy = dataObj["groupData"]
-
-
-                    bigString = ""
-
-                    listy.forEach(function(item) {
-                        bigString = bigString + makeBlock(item)
-                    });
-
-                    document.getElementById("righttable").innerHTML = bigString
 
                     
     
@@ -71,7 +50,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 
-
-function makeBlock(blockData){
-    return "<div class='groupbox'><a><h1 id='boxtitle'>" + blockData[1] + "</h1></a><h2 id='boxsubtitle'>" + blockData[2] + "</h2><a id='boxa'><button class='boxbutton'>Preferences</button></a></div>"
-}

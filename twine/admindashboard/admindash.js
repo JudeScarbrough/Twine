@@ -31,13 +31,10 @@ fetch('http://34.220.148.83:8000/', {
     
                     dataObj = JSON.parse(data)
 
-                    userData = JSON.parse(dataObj["userData"][0])
+                    userData = dataObj["userData"][0]
+                    console.log(userData)
 
                     localStorage.setItem("userData", JSON.stringify(userData))
-
-                    if (userData["adminAccount"] == "yes"){
-                        window.location.href = "../admindashboard/admindashboard.html"
-                    }
                     
 
 

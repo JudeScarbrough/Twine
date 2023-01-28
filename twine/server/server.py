@@ -6,6 +6,7 @@ import reset2
 import verify
 import loadDashboard
 import joinGroup
+import manageGroups
 
 app = Flask(__name__)
 CORS(app)
@@ -28,6 +29,8 @@ def determine(data):
         return loadDashboard.main(data)
     if(data["intention"] == "joinGroup"):
         return joinGroup.main(data)
+    if(data["intention"] == "manageGroups"):
+        return manageGroups.main(data)
 
     
 def login(data):

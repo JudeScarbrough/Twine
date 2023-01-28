@@ -21,12 +21,12 @@ function Submitted(){
                     dataObj = JSON.parse(data)
                     
                     console.log(dataObj)
-                    alert(dataObj["verdict"])
+                    console.log(dataObj["Verdict"])
 
                     if (dataObj["verdict"] == "groupdoesnotexist"){
                         document.getElementsByClassName("nomatch")[0].style.display = "block"
                     } else {
-                        document.getElementsByClassName("nomatch")[0].style.display = "none"
+                        document.getElementsByClassName("nomatch")[0].style.display = "none";
                     }
 
                     if (dataObj["verdict"] == "success"){
