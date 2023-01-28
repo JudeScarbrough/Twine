@@ -30,6 +30,7 @@ fetch('http://34.220.148.83:8000/', {
                     
     
                     dataObj = JSON.parse(data)
+                    console.log(dataObj)
                     
 
 

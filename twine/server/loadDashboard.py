@@ -36,10 +36,43 @@ def main(data):
         returnList.append(getGroupData(i))
 
     resturnData = {
-        "groupData": returnList
+        "groupData": returnList,
+        "userData": userData(phoneNum)
     }
 
     return resturnData
+
+
+def userData(phoneNum):
+     # Connect to the database
+    cnx = mysql.connector.connect(user='admin',
+                                  password='Password',
+                                  host='twinedb.ch3d33yazhdx.us-west-2.rds.amazonaws.com',
+                                  database='Twine_Users')
+
+
+    # Create a cursor object
+    cursor1 = cnx.cursor()
+
+    
+
+    # Define the query
+    query = f"SELECT data FROM users WHERE phoneNumber = '{ phoneNum }';"
+
+    # Execute the query
+    cursor1.execute(query)
+
+    # Fetch the results
+    results1 = cursor1.fetchall()
+
+    # Close the cursor and connection
+    cursor1.close()
+
+    return results1
+
+
+
+
 
 
 def getGroupData(id):
