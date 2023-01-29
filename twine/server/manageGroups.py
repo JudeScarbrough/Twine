@@ -69,6 +69,3 @@ def userData(phoneNum):
 
 
 
-print(main({
-    "phoneNumber": "5126623667"
-}))
