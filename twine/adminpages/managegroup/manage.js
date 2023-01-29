@@ -15,7 +15,7 @@ function signOutFunc(){
 }
 
 data = {
-    "intention": "loadDashboard",
+    "intention": "manageGroups",
     "phoneNumber": localStorage.getItem("phoneNumber")
 }
 
@@ -28,11 +28,14 @@ fetch('http://34.220.148.83:8000/', {
             }).then(response => response.text())
                 .then(data => {
                     
+                    htString = '<h1 id="gtitle">Groups</h1><hr>'
     
                     dataObj = JSON.parse(data)
-
                     
-    
+                    for (let i = 0; i < dataObj.length; i++) {
+                        htString = htString + '<div class="section"><h3 onclick="groupClicked(' + i + ')">' + dataObj[i][1] + '</h3><hr></div>'
+                    }
+                    document.getElementById("innervert").innerHTML = htString
 
                 });
     
@@ -45,7 +48,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 
-
+function groupClicked(i){
+    alert(i + "was clicked")
+}
 
 
 
