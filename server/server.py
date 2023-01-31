@@ -1,3 +1,7 @@
+# developer: John Dale Scarbrough IV
+# intent: fundraiser for world domination
+
+
 import sqlExecute
 from flask_cors import CORS
 from flask import Flask, request
