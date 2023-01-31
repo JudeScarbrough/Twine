@@ -34,6 +34,14 @@ def determine(data):
         return manageGroups.main(data)
     if(data["intention"] == "changeGroupName"):
         return editGroup.changeName(data)
+    if(data["intention"] == "changeDesc"):
+        return editGroup.changeDesc(data)
+
+
+
+
+
+    return {"response": "invalid intention"}
 
     
 def login(data):

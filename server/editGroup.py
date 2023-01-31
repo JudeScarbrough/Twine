@@ -51,10 +51,8 @@ def changeDesc(data):
     cursor.close()
     cnx.close()
 
-    return {"Verdict": "success"}
+    returnSTMT = {"Verdict": "success"}
+
+    return returnSTMT
 
 
-print(changeDesc({
-    "groupID": "1",
-    "newDesc": "jude does poopy"
-}))
