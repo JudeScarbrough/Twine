@@ -6,7 +6,7 @@ def addTimed(data):
     unixTime = data["unixTime"]
     messageBody = data["messageBody"]
 
-    new
+    addString = '(' + unixTime + ', "' + messageBody + '")]'
 
     # Connect to the database
     cnx = mysql.connector.connect(user='admin',
