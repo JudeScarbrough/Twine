@@ -56,6 +56,7 @@
 
 #bottomsection{
     display: flex;
+    margin-top: 50px;
 }
 
 #timednotifs{
