@@ -23,6 +23,8 @@ data = {
     "phoneNumber": localStorage.getItem("phoneNumber")
 }
 
+function updateData(){
+
 fetch('http://34.220.148.83:8000/', {
                 method: 'POST',
                 headers: {
@@ -45,7 +47,9 @@ fetch('http://34.220.148.83:8000/', {
 
                 });
     
+            }
 
+updateData()
 
 document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById("name").innerHTML = localStorage.getItem("name")
@@ -84,11 +88,11 @@ function groupClicked(i){
 }
 
 function titleClick(){
-    document.getElementById("reptitle").innerHTML = '<textarea id="titleText" style="height: 25px; width: 300px; vertical-align: middle; font-size: 20px;"></textarea><button onclick="titleSubmit()" class="microedit" style="width: 75px;">Confirm</button>'
+    document.getElementById("reptitle").innerHTML = '<textarea id="titleText" style="height: 25px; width: 300px; vertical-align: middle; font-size: 20px;">' + allGroupData[groupIndex][1] + '</textarea><button onclick="titleSubmit()" class="microedit" style="width: 75px;">Confirm</button>'
 }
 
 function descClick(){
-    document.getElementById("repdesc").innerHTML = '<textarea id="descText" style="height: 25px; width: 300px; vertical-align: middle; font-size: 20px;"></textarea><button onclick="descSubmit()" class="microedit" style="width: 75px;">Confirm</button>'
+    document.getElementById("repdesc").innerHTML = '<textarea id="descText" style="height: 75px; width: 300px; vertical-align: middle; font-size: 20px;">' + allGroupData[groupIndex][2] + '</textarea><button onclick="descSubmit()" class="microedit" style="width: 75px;">Confirm</button>'
 }
 
 
@@ -113,10 +117,15 @@ function titleSubmit(){
     
                     dataObj = JSON.parse(data)
                     
-                    alert(dataObj["Verdict"])
+
+                    if (dataObj["Verdict"] == "success"){
+                        document.getElementById("reptitle").innerHTML = '<span>' + changed + '</span><button onclick="titleClick()" class="microedit">Edit</button>'
+                    }
 
                 });
 
+    updateData()
+    document.getElementById("section" + activeID).style = "color: #007cc9;"
 }
 
 function descSubmit(){
@@ -141,10 +150,16 @@ function descSubmit(){
     
                     dataObj = JSON.parse(data)
                     
-                    alert(dataObj["Verdict"])
+                    if (dataObj["Verdict"] == "success"){
+                        document.getElementById("repdesc").innerHTML = '<span>' + changed + '</span><button onclick="descClick()" class="microedit">Edit</button>'
+
+                    }
     
 
                 });
+    
+    updateData()
+    document.getElementById("section" + activeID).style = "color: #007cc9;"
 }
 
 
