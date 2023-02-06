@@ -25,7 +25,7 @@ data = {
 
 function updateData(){
 
-fetch('http://34.220.148.83:8000/', {
+fetch('http://127.0.0.1:8000/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -88,11 +88,11 @@ function groupClicked(i){
 }
 
 function titleClick(){
-    document.getElementById("reptitle").innerHTML = '<textarea id="titleText" style="height: 25px; width: 300px; vertical-align: middle; font-size: 20px;">' + allGroupData[groupIndex][1] + '</textarea><button onclick="titleSubmit()" class="microedit" style="width: 75px;">Confirm</button>'
+    document.getElementById("reptitle").innerHTML = '<textarea id="titleText" style="height: 25px; width: 300px; vertical-align: middle; font-size: 20px;">' + allGroupData[groupIndex][1] + '</textarea><button onclick="titleSubmit()" class="microedit" style="width: 100px;">Confirm Title</button>'
 }
 
 function descClick(){
-    document.getElementById("repdesc").innerHTML = '<textarea id="descText" style="height: 75px; width: 300px; vertical-align: middle; font-size: 20px;">' + allGroupData[groupIndex][2] + '</textarea><button onclick="descSubmit()" class="microedit" style="width: 75px;">Confirm</button>'
+    document.getElementById("repdesc").innerHTML = '<textarea id="descText" style="height: 75px; width: 300px; vertical-align: middle; font-size: 20px;">' + allGroupData[groupIndex][2] + '</textarea><button onclick="descSubmit()" class="microedit" style="width: 150px;">Confirm Description</button>'
 }
 
 
@@ -105,7 +105,7 @@ function titleSubmit(){
         "newName": changed
     }
 
-    fetch('http://34.220.148.83:8000/', {
+    fetch('http://127.0.0.1:8000/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -138,7 +138,7 @@ function descSubmit(){
         "newDesc": changed
     }
 
-    fetch('http://34.220.148.83:8000/', {
+    fetch('http://127.0.0.1:8000/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -167,9 +167,58 @@ function descSubmit(){
 
 
 
+function wantsAdd(){
+    document.getElementById("addnewtimed").style.display = "block"
+    document.getElementById("timedbutt1").style.display = "none"
+}
+
+function addNotif(){
+    dateValue = document.getElementById("timeddate").value
+    timeValue = document.getElementById("timedtime").value
+    message = document.getElementById("timedmessage").value
+
+    if(dateValue == ""){
+        if(timeValue == ""){
+            if(message == ""){
+                alert("You must fill in all fields.")
+            } else {
+                alert("You must enter a date and time.")
+            }
+        } else {
+            if(message == ""){
+                alert("You must fill in all fields.")
+            } else {
+                alert("You must enter a valid date.")
+            }
+        }
+    }else{
+        if(timeValue == ""){
+            if(message == ""){
+                alert("You must enter a message and time.")
+            } else {
+                alert("You must enter a valid time.")
+            }
+        } else {
+            if(message == ""){
+                alert("You must enter a message.")
+            }
+        }
+    }
 
 
 
+    const date = new Date(`${dateValue}T${timeValue}`);
+
+    // Get the Unix timestamp (number of milliseconds since January 1, 1970, 00:00:00 UTC)
+    const timestamp = date.getTime();
+
+    // Convert milliseconds to seconds
+    const unixTimestamp = timestamp / 1000;
+
+    console.log(unixTimestamp)
+    
+    
+}
 
 
 

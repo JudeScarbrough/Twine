@@ -50,7 +50,18 @@
                 <div id="timednotifs">
 
                     <h1 id="instanttitle">Timed Notifications</h1>
-                    <button class="microedit" style="width: 160px; margin-bottom: 15px;">Add Notification</button>
+                    <button id="timedbutt1" onclick="wantsAdd()" class="microedit" style="width: 160px; margin-bottom: 15px;">Add Notification</button>
+
+                    <div id="addnewtimed" style="display: none;">
+                        <div>
+                            <input id="timeddate" type="date">
+                            <input id="timedtime" type="time">
+                        </div>
+                        <div>
+                            <textarea placeholder="Message" id="timedmessage"></textarea>
+                        </div>
+                        <button onclick="addNotif()" class="microedit" style="width: 100px; height: 30px; margin-bottom: 35px;">Add</button>
+                    </div>
 
                     <table id="timetable">
                         <tr>

@@ -19,7 +19,7 @@ data = {
     "phoneNumber": localStorage.getItem("phoneNumber")
 }
 
-fetch('http://34.220.148.83:8000/', {
+fetch('http://127.0.0.1:8000/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

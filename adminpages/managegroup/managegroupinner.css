@@ -138,3 +138,25 @@
     font-family: "Roboto";
     font-size: 17px;
 }
+
+input[type="date"] {
+    padding: 0.5em;
+    font-size: 1em;
+    border-radius: 0.25em;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+}
+
+input[type="time"] {
+    padding: 0.5em;
+    font-size: 1em;
+    border-radius: 0.25em;
+    border: 1px solid #ccc;
+    margin-left: 5px;
+}
+#timedmessage{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 235px;
+    height: 125px;
+}
