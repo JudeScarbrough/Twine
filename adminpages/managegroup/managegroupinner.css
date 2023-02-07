@@ -160,3 +160,7 @@ input[type="time"] {
     width: 235px;
     height: 125px;
 }
+
+.timerow{
+    font-family: "Roboto";
+}

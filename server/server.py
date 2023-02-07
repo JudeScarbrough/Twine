@@ -12,6 +12,7 @@ import loadDashboard
 import joinGroup
 import manageGroups
 import editGroup
+import timedNotif
 
 app = Flask(__name__)
 CORS(app)
@@ -40,6 +41,8 @@ def determine(data):
         return editGroup.changeName(data)
     if(data["intention"] == "changeDesc"):
         return editGroup.changeDesc(data)
+    if(data["intention"] == "createTimed"):
+        return timedNotif.addTimed(data)
 
 
 

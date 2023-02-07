@@ -30,9 +30,22 @@ def addTimed(data):
     cursor.close()
     cnx.close()
 
-    agh = json.loads(results[0][0])
 
-    agh[unixTime] = messageBody
+    
+    if len(results[0][0]) == 0:
+        agh1 = {}
+        agh1[unixTime] = messageBody
+        return commitNew(groupID, json.dumps(agh1))
+    else:
+
+        agh = json.loads(results[0][0])
+        agh[unixTime] = messageBody
+        return commitNew(groupID, json.dumps(agh))
+    
+
+    
+
+    
 
 
 
@@ -47,23 +60,21 @@ def commitNew(ID, newData):
     cursor = cnx.cursor()
 
     # Define the query
-    query = f"UPDATE `groups` set `data` = { newData } WHERE `groupID` = '{ groupID }'"
+    query = f'''UPDATE `groups` SET `data` = '{ newData }' WHERE groupID = "{ ID }"'''
+
+    print(query)
 
     # Execute the query
     cursor.execute(query)
 
-    # Fetch the results
-    results = cursor.fetchall()
+    
 
     # Close the cursor and connection
     cnx.commit()
     cursor.close()
     cnx.close()
 
+    return {"Verdict": "success"}
 
 
-print(addTimed({
-    "groupID": "1",
-    "unixTime": "12345",
-    "messageBody": "blah"
-}))
+

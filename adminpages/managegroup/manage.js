@@ -44,6 +44,7 @@ fetch('http://127.0.0.1:8000/', {
                         htString = htString + '<div class="section" id="section' + dataObj[i][0] + '"><h3 onclick="groupClicked(' + dataObj[i][0] + ')">' + dataObj[i][1] + '</h3><hr></div>'
                     }
                     document.getElementById("innervert").innerHTML = htString
+                    resetList()
 
                 });
     
@@ -85,6 +86,25 @@ function groupClicked(i){
 
     document.getElementById("repdesc").innerHTML = '<span>' + allGroupData[groupIndex][2] + '</span><button onclick="descClick()" class="microedit">Edit</button>'
     activeID = i
+    
+    resetList()
+
+}
+
+function resetList(){
+    if (activeID == ""){
+        return
+    }
+    currentGroupData = JSON.parse(allGroupData[groupIndex][5])
+    console.log(currentGroupData)
+    origHTML = '<tr><td><h1 class="tabletitle">Date & Time</h1></td><td><h1 class="tabletitle">Message</h1></td><td></td></tr>'
+    sample = ""
+    for (key in currentGroupData) {
+        
+        sample += "<tr class='timerow'><td>" + unixToDateTime(key) + "</td><td class='msg'>" + currentGroupData[key] + "</td><td><button class='microedit'>Edit</button></td></tr>"
+    }
+    document.getElementById("timetable").innerHTML = origHTML + sample
+
 }
 
 function titleClick(){
@@ -170,9 +190,13 @@ function descSubmit(){
 function wantsAdd(){
     document.getElementById("addnewtimed").style.display = "block"
     document.getElementById("timedbutt1").style.display = "none"
+    document.getElementById("timedmessage").innerHTML = ""
 }
 
 function addNotif(){
+
+    validit = true
+
     dateValue = document.getElementById("timeddate").value
     timeValue = document.getElementById("timedtime").value
     message = document.getElementById("timedmessage").value
@@ -181,26 +205,33 @@ function addNotif(){
         if(timeValue == ""){
             if(message == ""){
                 alert("You must fill in all fields.")
+                validit = false
             } else {
                 alert("You must enter a date and time.")
+                validit = false
             }
         } else {
             if(message == ""){
                 alert("You must fill in all fields.")
+                validit = false
             } else {
                 alert("You must enter a valid date.")
+                validit = false
             }
         }
     }else{
         if(timeValue == ""){
             if(message == ""){
                 alert("You must enter a message and time.")
+                validit = false
             } else {
                 alert("You must enter a valid time.")
+                validit = false
             }
         } else {
             if(message == ""){
                 alert("You must enter a message.")
+                validit = false
             }
         }
     }
@@ -216,13 +247,48 @@ function addNotif(){
     const unixTimestamp = timestamp / 1000;
 
     console.log(unixTimestamp)
+
+    hmmData = {
+        "intention": "createTimed",
+        "groupID": activeID,
+        "unixTime": unixTimestamp,
+        "messageBody": message
+    }
+    
+    if(validit){
+    fetch('http://127.0.0.1:8000/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(hmmData)
+            }).then(response => response.text())
+                .then(data => {
+                    
+    
+                    dataObj = JSON.parse(data)
+                    
+                    if (dataObj["Verdict"] == "success"){
+                        document.getElementById("addnewtimed").style.display = "none"
+                        document.getElementById("timedbutt1").style.display = "block"
+                        updateData()
+                        groupClicked(activeID)
+                    }
+    
+
+                });}
     
     
 }
 
 
 
-
+function unixToDateTime(timestamp) {
+    var date = new Date(timestamp * 1000);
+    return date.toLocaleDateString() + " " + date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+}
+  
+  
 
 
 
