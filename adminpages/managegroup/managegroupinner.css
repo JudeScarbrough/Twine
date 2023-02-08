@@ -164,3 +164,7 @@ input[type="time"] {
 .timerow{
     font-family: "Roboto";
 }
+
+.msg{
+    width: 210px;
+}

@@ -99,9 +99,11 @@ function resetList(){
     console.log(currentGroupData)
     origHTML = '<tr><td><h1 class="tabletitle">Date & Time</h1></td><td><h1 class="tabletitle">Message</h1></td><td></td></tr>'
     sample = ""
+    index = 0
     for (key in currentGroupData) {
         
-        sample += "<tr class='timerow'><td>" + unixToDateTime(key) + "</td><td class='msg'>" + currentGroupData[key] + "</td><td><button class='microedit'>Edit</button></td></tr>"
+        sample += "<tr class='timerow'><td id='date" + index + "'>" + unixToDateTime(key) + "</td><td class='msg' id='msg" + index + "'>" + currentGroupData[key] + "</td><td id='tr" + index + "' ><button id='msgEdit" + index + "' onclick='editTimed(" + index + ")' class='microedit'>Edit</button></td></tr>"
+        index += 1
     }
     document.getElementById("timetable").innerHTML = origHTML + sample
 
@@ -290,13 +292,21 @@ function unixToDateTime(timestamp) {
   
   
 
+function editTimed(i){
+    document.getElementById("msg" + i).innerHTML = "<textarea id='textarea" + i + "' style='text-align: center; height: 60px;'>" + document.getElementById("msg" + i).innerHTML + "</textarea>"
+    document.getElementById("tr" + i).innerHTML = "<button style='width: 60px;' onclick='confirmEdit(" + i + ")' class='microedit'>Confirm</button><a style='color: blue; font-size: 14px; padding-left: 10px; cursor: pointer;' onclick='deleteTime(" + i + ")'>delete</a>"
+
+}
 
 
+function confirmEdit(i){
+    alert("confirm" + i)
+}
 
 
-
-
-
+function deleteTime(i){
+    alert("delete " + i)
+}
 
 
 
