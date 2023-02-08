@@ -54,13 +54,16 @@
 
                     <div id="addnewtimed" style="display: none;">
                         <div>
-                            <input id="timeddate" type="date">
+                            <input style="margin-right: 10px;" id="timeddate" type="date">
                             <input id="timedtime" type="time">
                         </div>
                         <div>
                             <textarea placeholder="Message" id="timedmessage"></textarea>
                         </div>
-                        <button onclick="addNotif()" class="microedit" style="width: 100px; height: 30px; margin-bottom: 35px;">Add</button>
+                        <button onclick="addNotif()" class="microedit" style="width: 100px; height: 30px; margin: 0px 0px 0px 0px;">Add</button>
+                        <div>
+                            <a style="color: blue; font-size: 14px; cursor: pointer; vertical-align: middle; text-align: center;" onclick="cancelNewTimed()">Cancel</a>
+                        </div>
                     </div>
 
                     <table id="timetable">
@@ -74,15 +77,7 @@
                     </table>
                     
                 </div>
-                <div id="instantnotifs">
-
-                    <h1 id="instanttitle">Send an instant notification</h1>
-                    <textarea id="instantmessage"></textarea>
-                    <div style="width: 250px; margin: auto;">
-                        <a id="dasha"><button class="dashbutton">Send Notification</button></a>
-                    </div>
-
-                </div>
+                
             </div>
 
 

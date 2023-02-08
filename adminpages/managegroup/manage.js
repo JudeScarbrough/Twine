@@ -93,19 +93,23 @@ function groupClicked(i){
 
 function resetList(){
     if (activeID == ""){
+        document.getElementById("timetable").innerHTML = ""
         return
-    }
+    } else if (allGroupData[groupIndex][5] == ""){
+        document.getElementById("timetable").innerHTML = ""
+    } else {
     currentGroupData = JSON.parse(allGroupData[groupIndex][5])
     console.log(currentGroupData)
-    origHTML = '<tr><td><h1 class="tabletitle">Date & Time</h1></td><td><h1 class="tabletitle">Message</h1></td><td></td></tr>'
+    origHTML = '<tr><td><h1 class="tabletitle datebox">Date & Time</h1></td><td><h1 class="tabletitle">Message</h1></td><td></td></tr>'
     sample = ""
     index = 0
     for (key in currentGroupData) {
         
-        sample += "<tr class='timerow'><td id='date" + index + "'>" + unixToDateTime(key) + "</td><td class='msg' id='msg" + index + "'>" + currentGroupData[key] + "</td><td id='tr" + index + "' ><button id='msgEdit" + index + "' onclick='editTimed(" + index + ")' class='microedit'>Edit</button></td></tr>"
+        sample += "<tr class='timerow'><td class='datebox' id='date" + index + "'>" + unixToDateTime(key) + "</td><td class='msg' id='msg" + index + "'>" + currentGroupData[key] + "</td><td id='tr" + index + "' ><button id='msgEdit" + index + "' onclick='editTimed(" + index + ")' class='microedit'>Edit</button></td></tr>"
         index += 1
     }
     document.getElementById("timetable").innerHTML = origHTML + sample
+}
 
 }
 
@@ -295,7 +299,7 @@ function unixToDateTime(timestamp) {
 function editTimed(i){
     document.getElementById("msg" + i).innerHTML = "<textarea id='textarea" + i + "' style='text-align: center; height: 60px;'>" + document.getElementById("msg" + i).innerHTML + "</textarea>"
     document.getElementById("tr" + i).innerHTML = "<button style='width: 60px;' onclick='confirmEdit(" + i + ")' class='microedit'>Confirm</button><a style='color: blue; font-size: 14px; padding-left: 10px; cursor: pointer;' onclick='deleteTime(" + i + ")'>delete</a>"
-
+    document.getElementById("date" + i).innerHTML = document.getElementById("date" + i).innerHTML + "<button onclick='editDate(" + i + ")' style='margin: 0px 0px 0px 0px;' class='microedit'>Edit</button>"
 }
 
 
@@ -311,11 +315,31 @@ function deleteTime(i){
 
 
 
+function cancelNewTimed(){
+    document.getElementById("addnewtimed").style.display = "none"
+    document.getElementById("timedbutt1").style.display = "block"
+    document.getElementById("timedmessage").innerHTML = ""
+}
 
 
+function editDate(i){
+    document.getElementById("date" + i).innerHTML = "<input id='datein" + i + "' type='date'><input id='timein" + i + "' type='time'><button onclick='dateConfirm(" + i + ")' style='width: 60px; margin-left: 0px;' class='microedit'>Confirm</button>"
+}
 
 
+function dateConfirm(i){
+    dateval = document.getElementById("datein" + i).value
+    timeval = document.getElementById("timein" + i).value
+    const date = new Date(`${dateval}T${timeval}`);
 
+    // Get the Unix timestamp (number of milliseconds since January 1, 1970, 00:00:00 UTC)
+    const timestamp = date.getTime();
+
+    // Convert milliseconds to seconds
+    const unixTimestamp1 = timestamp / 1000;
+    alert(unixTimestamp1)
+
+}
 
 
 /*

@@ -61,8 +61,7 @@
 }
 
 #timednotifs{
-    margin-left: 20px;
-    width: 500px;
+    margin: auto;
 }
 
 #titlesection{
@@ -130,6 +129,39 @@
 
 #timetable{
     width: 450px;
+    margin-top: 50px;
+}
+
+.datebox {
+    width: 140px;
+}
+@media (max-width: 1100px) {
+    #timetable {
+        width: 450px;
+    }
+    .msg{
+        width: 250px;
+    }
+    .datebox{
+        width: 100px;
+    }
+}
+
+@media (min-width: 1100px) and (max-width: 1250px) {
+    #timetable {
+        width: 650px;
+    }
+}
+
+@media (min-width: 1250px) and (max-width: 1700px) {
+    #timetable {
+        width: 700px;
+    }
+}
+
+.msg{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #instantmessage{
@@ -144,7 +176,7 @@ input[type="date"] {
     font-size: 1em;
     border-radius: 0.25em;
     border: 1px solid #ccc;
-    margin-right: 5px;
+    
 }
 
 input[type="time"] {
@@ -152,7 +184,7 @@ input[type="time"] {
     font-size: 1em;
     border-radius: 0.25em;
     border: 1px solid #ccc;
-    margin-left: 5px;
+    
 }
 #timedmessage{
     margin-top: 10px;
@@ -165,6 +197,3 @@ input[type="time"] {
     font-family: "Roboto";
 }
 
-.msg{
-    width: 210px;
-}
