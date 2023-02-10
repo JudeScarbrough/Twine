@@ -38,7 +38,7 @@ fetch('http://127.0.0.1:8000/', {
     
                     dataObj = JSON.parse(data)
                     allGroupData = dataObj
-                    console.log(dataObj)
+                    
                     
                     for (let i = 0; i < dataObj.length; i++) {
                         htString = htString + '<div class="section" id="section' + dataObj[i][0] + '"><h3 onclick="groupClicked(' + dataObj[i][0] + ')">' + dataObj[i][1] + '</h3><hr></div>'
@@ -99,7 +99,7 @@ function resetList(){
         document.getElementById("timetable").innerHTML = ""
     } else {
     currentGroupData = JSON.parse(allGroupData[groupIndex][5])
-    console.log(currentGroupData)
+    
     origHTML = '<tr><td><h1 class="tabletitle datebox">Date & Time</h1></td><td><h1 class="tabletitle">Message</h1></td><td></td></tr>'
     sample = ""
     index = 0
@@ -252,7 +252,7 @@ function addNotif(){
     // Convert milliseconds to seconds
     const unixTimestamp = timestamp / 1000;
 
-    console.log(unixTimestamp)
+    
 
     hmmData = {
         "intention": "createTimed",
@@ -301,10 +301,22 @@ function editTimed(i){
     document.getElementById("tr" + i).innerHTML = "<button style='width: 60px;' onclick='confirmEdit(" + i + ")' class='microedit'>Confirm</button><a style='color: blue; font-size: 14px; padding-left: 10px; cursor: pointer;' onclick='deleteTime(" + i + ")'>delete</a>"
     document.getElementById("date" + i).innerHTML = document.getElementById("date" + i).innerHTML + "<button onclick='editDate(" + i + ")' style='margin: 0px 0px 0px 0px;' class='microedit'>Edit</button>"
 }
-
+let editedDates = []
 
 function confirmEdit(i){
-    alert("confirm" + i)
+
+    if (editedDates.includes("date" + i)){
+        alert("edited" + i)
+    } else {
+        index = 0
+        for (key in currentGroupData) {
+            if (index == i){
+                console.log(unixToDateTime(key))
+            }
+            index += 1
+        }
+    }
+
 }
 
 
@@ -324,7 +336,12 @@ function cancelNewTimed(){
 
 function editDate(i){
     document.getElementById("date" + i).innerHTML = "<input id='datein" + i + "' type='date'><input id='timein" + i + "' type='time'><button onclick='dateConfirm(" + i + ")' style='width: 60px; margin-left: 0px;' class='microedit'>Confirm</button>"
+    editedDates.push("date" + i)
+
 }
+
+
+
 
 
 function dateConfirm(i){
