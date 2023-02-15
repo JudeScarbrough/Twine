@@ -45,6 +45,8 @@ def determine(data):
         return timedNotif.addTimed(data)
     if(data["intention"] == "updateTimed"):
         return timedNotif.updateTimed(data)
+    if (data["intention"] == "createGroup"):
+        return manageGroups.createGroup(data)
 
 
 

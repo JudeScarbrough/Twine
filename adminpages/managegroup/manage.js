@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function groupClicked(i){
     updateData()
-    console.log(allGroupData)
     
     document.getElementById("bottomsection").style.display = "flex"
 
@@ -313,10 +312,8 @@ function editTimed(i){
 let editedDates = []
 
 function confirmEdit(i){
-    console.log(document.getElementById("textarea" + i).value)
     newMsg = document.getElementById("textarea" + i).value
     currentGroupDataJSON[i][1] = newMsg
-    console.log(currentGroupDataJSON[i][0])
     submitGroupData()
     dateIndex = document.getElementById("date" + i).innerHTML.indexOf("<")
     if (document.getElementById("date" + i).innerHTML.length > 120){
@@ -367,11 +364,9 @@ function dateConfirm(i){
 
     if(unixTimestamp1 > 4){
         //add new time stamp to group data list
-        console.log(currentGroupDataJSON[i][0])
 
         currentGroupDataJSON[i][0] = unixTimestamp1
 
-        console.log(currentGroupDataJSON[i][0])
         document.getElementById("date" + i).innerHTML = unixToDateTime(unixTimestamp1) + "<button onclick='editDate(" + i + ")' style='margin: 0px 0px 0px 0px;' class='microedit'>Edit</button>"
     } else {
         alert("Enter a valid time.")
