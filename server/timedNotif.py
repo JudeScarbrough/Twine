@@ -33,14 +33,16 @@ def addTimed(data):
 
     
     if len(results[0][0]) == 0:
-        agh1 = {}
-        agh1[unixTime] = messageBody
+        agh1 = []
+        agh1.append([unixTime, messageBody])
         return commitNew(groupID, json.dumps(agh1))
     else:
 
         agh = json.loads(results[0][0])
-        agh[unixTime] = messageBody
+        agh.append([unixTime, messageBody])
         return commitNew(groupID, json.dumps(agh))
+
+    
     
 
     
