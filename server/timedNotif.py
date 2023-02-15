@@ -80,3 +80,34 @@ def commitNew(ID, newData):
 
 
 
+def updateTimed(data):
+    groupID = data["groupID"]
+    stringData = data["stringData"]
+
+     # Connect to the database
+    cnx = mysql.connector.connect(user='admin',
+                                  password='Password',
+                                  host='twinedb.ch3d33yazhdx.us-west-2.rds.amazonaws.com',
+                                  database='Twine_Users')
+
+    # Create a cursor object
+    cursor = cnx.cursor()
+
+    # Define the query
+    query = f'''UPDATE `groups` SET `data` = '{ stringData }' WHERE groupID = "{ groupID }"'''
+
+    print(query)
+
+    # Execute the query
+    cursor.execute(query)
+
+    
+
+    # Close the cursor and connection
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+
+    return {"Verdict": "success"}
+
+

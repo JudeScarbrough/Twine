@@ -2,6 +2,8 @@ activeID = ""
 allGroupData = []
 groupIndex = ""
 
+currentGroupDataJSON = []
+
 if(localStorage.getItem("userData") == "null"){
     window.location.href="../login/loginui.html"
 }
@@ -65,6 +67,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 function groupClicked(i){
+    updateData()
+    console.log(allGroupData)
+    
     document.getElementById("bottomsection").style.display = "flex"
 
     for (let x = 0; x < allGroupData.length; x++) {
@@ -86,6 +91,10 @@ function groupClicked(i){
 
     document.getElementById("repdesc").innerHTML = '<span>' + allGroupData[groupIndex][2] + '</span><button onclick="descClick()" class="microedit">Edit</button>'
     activeID = i
+    if(allGroupData[groupIndex][5] !== ""){
+        currentGroupDataJSON = JSON.parse(allGroupData[groupIndex][5])
+    }
+    
     
     resetList()
 
@@ -105,7 +114,7 @@ function resetList(){
     index = 0
     for (key in currentGroupData) {
         
-        sample += "<tr class='timerow'><td class='datebox' id='date" + index + "'>" + unixToDateTime(key) + "</td><td class='msg' id='msg" + index + "'>" + currentGroupData[key] + "</td><td id='tr" + index + "' ><button id='msgEdit" + index + "' onclick='editTimed(" + index + ")' class='microedit'>Edit</button></td></tr>"
+        sample += "<tr class='timerow'><td class='datebox' id='date" + index + "'>" + unixToDateTime(currentGroupData[index][0]) + "</td><td class='msg' id='msg" + index + "'>" + currentGroupData[index][1] + "</td><td id='tr" + index + "' ><button id='msgEdit" + index + "' onclick='editTimed(" + index + ")' class='microedit'>Edit</button></td></tr>"
         index += 1
     }
     document.getElementById("timetable").innerHTML = origHTML + sample
@@ -304,19 +313,20 @@ function editTimed(i){
 let editedDates = []
 
 function confirmEdit(i){
-
-    if (editedDates.includes("date" + i)){
-        alert("edited" + i)
+    console.log(document.getElementById("textarea" + i).value)
+    newMsg = document.getElementById("textarea" + i).value
+    currentGroupDataJSON[i][1] = newMsg
+    console.log(currentGroupDataJSON[i][0])
+    submitGroupData()
+    dateIndex = document.getElementById("date" + i).innerHTML.indexOf("<")
+    if (document.getElementById("date" + i).innerHTML.length > 120){
+        document.getElementById("date" + i).innerHTML = unixToDateTime(currentGroupDataJSON[i][0])
     } else {
-        index = 0
-        for (key in currentGroupData) {
-            if (index == i){
-                console.log(unixToDateTime(key))
-            }
-            index += 1
-        }
+        document.getElementById("date" + i).innerHTML = document.getElementById("date" + i).innerHTML.slice(0, dateIndex)
     }
-
+    
+    document.getElementById("msg" + i).innerHTML = document.getElementById("textarea" + i).value
+    document.getElementById("tr" + i).innerHTML = "<button id='msgEdit" + i + "' onclick='editTimed(" + i + ")' class='microedit'>Edit</button>"
 }
 
 
@@ -354,9 +364,42 @@ function dateConfirm(i){
 
     // Convert milliseconds to seconds
     const unixTimestamp1 = timestamp / 1000;
-    alert(unixTimestamp1)
+
+    if(unixTimestamp1 > 4){
+        //add new time stamp to group data list
+        console.log(currentGroupDataJSON[i][0])
+
+        currentGroupDataJSON[i][0] = unixTimestamp1
+
+        console.log(currentGroupDataJSON[i][0])
+        document.getElementById("date" + i).innerHTML = unixToDateTime(unixTimestamp1) + "<button onclick='editDate(" + i + ")' style='margin: 0px 0px 0px 0px;' class='microedit'>Edit</button>"
+    } else {
+        alert("Enter a valid time.")
+    }
+}
+
+function submitGroupData(){
+    fetch('http://127.0.0.1:8000/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({"groupID": activeID, "stringData": JSON.stringify(currentGroupDataJSON), "intention": "updateTimed"})
+            }).then(response => response.text())
+                .then(data => {
+                    
+    
+                    dataObj = JSON.parse(data)
+                    
+                    if (dataObj["Verdict"] == "success"){
+                        console.log("Success")
+                    }
+    
+
+                });
 
 }
+
 
 
 /*

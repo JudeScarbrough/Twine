@@ -43,6 +43,8 @@ def determine(data):
         return editGroup.changeDesc(data)
     if(data["intention"] == "createTimed"):
         return timedNotif.addTimed(data)
+    if(data["intention"] == "updateTimed"):
+        return timedNotif.updateTimed(data)
 
 
 
