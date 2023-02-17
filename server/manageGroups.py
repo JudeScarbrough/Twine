@@ -117,6 +117,9 @@ def createGroup(data):
     cursor.close()
     cnx.close()
 
+
+    
+
     
 
     
