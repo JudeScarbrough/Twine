@@ -23,10 +23,10 @@ def hash(pw):
 
 def checkNum(phoneNum):
     # Connect to the database
-    cnx = mysql.connector.connect(user='admin',
-                              password='Password',
-                              host='twinedb.ch3d33yazhdx.us-west-2.rds.amazonaws.com',
-                              database='Twine_Users')
+    cnx = mysql.connector.connect(user='judescarbrough',
+                                  password='Super2005',
+                                  host='mysql.twinenotifications.com',
+                                  database='twinedb')
 
     # Create a cursor object
     cursor = cnx.cursor()
@@ -55,10 +55,10 @@ def submitUser(data):
 
 
     # Connect to the database
-    cnx = mysql.connector.connect(user='admin',
-                                  password='Password',
-                                  host='twinedb.ch3d33yazhdx.us-west-2.rds.amazonaws.com',
-                                  database='Twine_Users')
+    cnx = mysql.connector.connect(user='judescarbrough',
+                                  password='Super2005',
+                                  host='mysql.twinenotifications.com',
+                                  database='twinedb')
     # Create a cursor object
     cursor = cnx.cursor()
 
@@ -81,10 +81,10 @@ def submitUser(data):
 def login(data):
     
     # Connect to the database
-    cnx = mysql.connector.connect(user='admin',
-                                  password='Password',
-                                  host='twinedb.ch3d33yazhdx.us-west-2.rds.amazonaws.com',
-                                  database='Twine_Users')
+    cnx = mysql.connector.connect(user='judescarbrough',
+                                  password='Super2005',
+                                  host='mysql.twinenotifications.com',
+                                  database='twinedb')
 
 
     # Create a cursor object
@@ -120,10 +120,10 @@ def login(data):
 
 def alreadyUser(data):
     hashedPW = hash(data["password"])
-    cnx = mysql.connector.connect(user='admin',
-                                  password='Password',
-                                  host='twinedb.ch3d33yazhdx.us-west-2.rds.amazonaws.com',
-                                  database='Twine_Users')
+    cnx = mysql.connector.connect(user='judescarbrough',
+                                  password='Super2005',
+                                  host='mysql.twinenotifications.com',
+                                  database='twinedb')
     # Create a cursor object
     cursor = cnx.cursor()
 

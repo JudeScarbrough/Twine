@@ -10,10 +10,10 @@ def main(data):
 
     if checkNumForCode(phoneNum, theCode):
         # Connect to the database
-        cnx = mysql.connector.connect(user='admin',
-                                  password='Password',
-                                  host='twinedb.ch3d33yazhdx.us-west-2.rds.amazonaws.com',
-                                  database='Twine_Users')
+        cnx = mysql.connector.connect(user='judescarbrough',
+                                      password='Super2005',
+                                      host='mysql.twinenotifications.com',
+                                      database='twinedb')
         # Create a cursor object
         cursor = cnx.cursor()
 
@@ -37,10 +37,10 @@ def main(data):
 
 def checkNumForCode(num, code):
     # Connect to the database
-    cnx = mysql.connector.connect(user='admin',
-                              password='Password',
-                              host='twinedb.ch3d33yazhdx.us-west-2.rds.amazonaws.com',
-                              database='Twine_Users')
+    cnx = mysql.connector.connect(user='judescarbrough',
+                                  password='Super2005',
+                                  host='mysql.twinenotifications.com',
+                                  database='twinedb')
 
     # Create a cursor object
     cursor = cnx.cursor()
