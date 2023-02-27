@@ -30,8 +30,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 function createGroup(){
-    successFunc()
+    groupName = document.getElementById("groupName").value
+    desc = document.getElementById("descy").value
 
+    if (groupName == "" || desc == ""){
+        alert("Enter a valid name and Description.")
+    } else {
+        submitGroup({"phoneNumber": localStorage.getItem("phoneNumber"), "groupName": groupName, "groupDesc": desc, "intention": "createGroup"})
+    }
+
+
+
+}
+
+function submitGroup(data){
+    fetch('http://127.0.0.1:8000/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(response => response.text())
+        .then(data => {
+
+            dataOBJ = JSON.parse(data)
+            if (dataOBJ["Verdict"] == "success"){
+                successFunc()
+            }
+
+        });
 }
 
 function successFunc(){

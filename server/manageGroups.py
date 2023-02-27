@@ -6,6 +6,8 @@ import mysql.connector
 def main(data):
     groupIds = json.loads(userData(data["phoneNumber"])[0][0])["adminOwner"]
 
+    
+
     if len(groupIds) > 0:
         listy = []
         for i in groupIds:
@@ -116,6 +118,70 @@ def createGroup(data):
     # Close the cursor and connection
     cursor.close()
     cnx.close()
+
+    newGroupID = results[0][0]
+
+
+
+    #pull user data
+    # Connect to the database
+    cnx = mysql.connector.connect(user='admin',
+                                  password='Password',
+                                  host='twinedb.ch3d33yazhdx.us-west-2.rds.amazonaws.com',
+                                  database='Twine_Users')
+
+    # Create a cursor object
+    cursor = cnx.cursor()
+
+    # Define the query
+    query = f"SELECT `data` FROM `users` WHERE `phoneNumber` = '{ phoneNum }'"
+
+    # Execute the query
+    cursor.execute(query)
+
+    # Fetch the results
+    results = cursor.fetchall()
+
+    # Close the cursor and connection
+    cursor.close()
+    cnx.close()
+
+    currentUserData = json.loads(results[0][0])
+
+    adminList = currentUserData["adminOwner"]
+
+    adminList.append(str(newGroupID))
+
+    currentUserData["adminOwner"] = adminList
+
+
+
+
+    # update user data
+
+    # Connect to the database
+    cnx = mysql.connector.connect(user='admin',
+                                  password='Password',
+                                  host='twinedb.ch3d33yazhdx.us-west-2.rds.amazonaws.com',
+                                  database='Twine_Users')
+
+    # Create a cursor object
+    cursor = cnx.cursor()
+
+    # Define the query
+    query = f'''UPDATE `users` SET `data` = '{ json.dumps(currentUserData) }' WHERE phoneNumber = "{ phoneNum }"'''
+
+
+    # Execute the query
+    cursor.execute(query)
+
+    # Close the cursor and connection
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+
+    return {"Verdict": "success"}
+
 
 
     
